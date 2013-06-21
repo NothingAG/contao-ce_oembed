@@ -25,6 +25,7 @@ A content element allowing to embed content of third-party websites (YouTube, Vi
  * Videos are now responsive to the page
  * Removed height and width options in the backend.
  * Updated installation guide
+ * Added support for Youtube direct-links in the Backend
 
 ### 2.0.0 (2013-06-05)
  * Added autoload files to config to preload php files.
