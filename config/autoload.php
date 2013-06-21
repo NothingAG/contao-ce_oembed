@@ -13,14 +13,24 @@
  *
  * PHP version 5
  * @copyright  Nothing Interactive 2013 <https://www.nothing.ch/>
- * @author     Weyert de Boer <sprog@nothing.ch>
  * @author     Lukas Walliser <xari@nothing.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
 /**
- * Content elements
+ * Register the classes
  */
-$GLOBALS['TL_LANG']['CTE']['oembed']     = array('oEmbed Element', 'Erzeugt eine oEmbed Element.')
+ClassLoader::addClasses(array
+(
+	// Modules
+	'Contao\ContentOEmbed' => 'system/modules/ce_oembed/modules/ContentOEmbed.php',
+));
 
-?>
+
+/**
+ * Register the templates
+ */
+TemplateLoader::addFiles(array
+(
+	'ce_oembed' => 'system/modules/ce_oembed/templates/modules',
+));

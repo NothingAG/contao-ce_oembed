@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -12,8 +12,9 @@
  *
  *
  * PHP version 5
- * @copyright  Nothing Interactive 2012 <https://www.nothing.ch/>
+ * @copyright  Nothing Interactive 2013 <https://www.nothing.ch/>
  * @author     Weyert de Boer <sprog@nothing.ch>
+ * @author     Lukas Walliser <xari@nothing.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 

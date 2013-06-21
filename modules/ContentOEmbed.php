@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -12,10 +12,16 @@
  *
  *
  * PHP version 5
- * @copyright  Nothing Interactive 2012 <https://www.nothing.ch/>
+ * @copyright  Nothing Interactive 2013 <https://www.nothing.ch/>
  * @author     Weyert de Boer <sprog@nothing.ch>
+ * @author     Lukas Walliser <xari@nothing.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
+
+/**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace Contao;
 
 /**
  * Class ContentOEmbed
@@ -23,9 +29,9 @@
  * Front end content element "oembed".
  * @copyright  Nothing Interactive 2012
  * @author     Weyert de Boer <sprog@nothing.ch>
- * @package    Controller
+ * @author     Lukas Walliser <xari@nothing.ch>
  */
-class ContentOEmbed extends ContentElement
+class ContentOEmbed extends \ContentElement
 {
 
 	/**
@@ -41,8 +47,7 @@ class ContentOEmbed extends ContentElement
 	 */
 	public function generate()
 	{
-		if (TL_MODE == 'BE')
-		{
+		if (TL_MODE == 'BE') {
 			$objTemplate = new BackendTemplate('be_wildcard');
 
 			$objTemplate->wildcard = '### oEmbed Content Element ###';
@@ -53,7 +58,11 @@ class ContentOEmbed extends ContentElement
 
 			return $objTemplate->parse();
 
-		}
+		} else {
+            // Only load slider for front end
+            $GLOBALS['TL_JAVASCRIPT'][] = 'assets/jquery/fitvids/jquery.fitvids.js';
+            $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/ce_oembed/assets/init_fitVids.js';
+        }
 
 		return parent::generate();
 	}
@@ -67,6 +76,7 @@ class ContentOEmbed extends ContentElement
     protected function getServiceResponse($strUrl)
     {
         $strServiceResponse = @file_get_contents($strUrl);
+
         if ( $strServiceResponse == '' )
         {
             $this->log('Unable to retrieve oEmbed data using url: ' . $strUrl, 'Content element class "ContentOEmbed"', TL_ERROR);
@@ -74,6 +84,7 @@ class ContentOEmbed extends ContentElement
 
         // try to parse the response as if its json
         $arrServiceResponse = @json_decode($strServiceResponse, true);
+
         if ( is_null($arrServiceResponse) ) {
             // consider it to be xml
             $arrServiceResponse = json_decode(json_encode((array) simplexml_load_string($strServiceResponse)),1);
@@ -91,11 +102,14 @@ class ContentOEmbed extends ContentElement
      */
     protected function getItemUrl($url)
     {
-        if (preg_match('~^http://(?:www\.)?vimeo\.com/(?:clip:)?(\d+)~', $url, $match))
-        {
+        if (preg_match('~^(ht|f)tp(s?)\:\/\/[-.\w]*vimeo.com/[a-zA-Z0-9\-‌​\.\?\,\'\/\\\+&amp;%\$#_]*~', $url, $match)) {
+
             $url = 'http://vimeo.com/api/oembed.xml?url=' . $url;
         }
-
+        if (preg_match('~^(ht|f)tp(s?)\:\/\/[-.\w]*youtube.com/watch?[a-zA-Z0-9\-‌​\.\?\,\'\/\\\+&amp;%\$#_]*~', $url, $match))
+        {
+            $url = 'http://www.youtube.com/oembed?url=' . $url;
+        }
         return $url;
     }
 
@@ -104,12 +118,14 @@ class ContentOEmbed extends ContentElement
 	 */
 	protected function compile()
 	{
-        $intWidth = $this->oembed_maxwidth;
-        $intHeight = $this->oembed_maxheight;
         $strItemUrl = $this->getItemUrl($this->oembed_url);
-        $strServiceUrl = $strItemUrl . '&maxwidth=' . $intWidth . '&maxheight=' . $intHeight . '&format=json';
+
+        $strServiceUrl = $strItemUrl . '&format=json';
 
         $arrServiceResponse = $this->getServiceResponse($strServiceUrl);
+
+        $arrServiceResponse = str_replace('http:', '', $arrServiceResponse);
+
         if ( is_array($arrServiceResponse) && array_key_exists('html', $arrServiceResponse) )
         {
             $strEmbedCode = $arrServiceResponse['html'];

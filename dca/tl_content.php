@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -12,8 +12,9 @@
  *
  *
  * PHP version 5
- * @copyright  Nothing Interactive 2012 <https://www.nothing.ch/>
+ * @copyright  Nothing Interactive 2013 <https://www.nothing.ch/>
  * @author     Weyert de Boer <sprog@nothing.ch>
+ * @author     Lukas Walliser <xari@nothing.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
@@ -30,23 +31,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['oembed_url'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['oembed_url'],
     'exclude'                 => true,
     'inputType'               => 'text',
-    'eval'                    => array('mandatory'=>true, 'decodeEntities' => true)
+    'eval'                    => array('mandatory'=>true, 'decodeEntities' => true),
+    'sql'                     => "varchar(255) NOT NULL default ''"
 );
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['oembed_maxwidth'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['oembed_maxwidth'],
-    'exclude'                 => true,
-    'inputType'               => 'text',
-    'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit')
-);
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['oembed_maxheight'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['oembed_maxheight'],
-    'exclude'                 => true,
-    'inputType'               => 'text',
-    'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit')
-);
-
 ?>

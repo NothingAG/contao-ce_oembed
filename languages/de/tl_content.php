@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -12,11 +12,10 @@
  *
  *
  * PHP version 5
- * @copyright  Nothing Interactive 2012 <https://www.nothing.ch/>
+ * @copyright  Nothing Interactive 2013 <https://www.nothing.ch/>
  * @author     Weyert de Boer <sprog@nothing.ch>
+ * @author     Lukas Walliser <xari@nothing.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
 $GLOBALS['TL_LANG']['tl_content']['oembed_url']	        = array('Content URL', 'Geben Sie hier eine oEmbed API oder Vimeo Video URL ein');
-$GLOBALS['TL_LANG']['tl_content']['oembed_maxwidth']	= array('Maximalbreite', 'Geben Sie hier die maximale Breite des eingebetteten Inhalts an');
-$GLOBALS['TL_LANG']['tl_content']['oembed_maxheight']	= array('Maximalhöhe', 'Geben Sie hier die maximale Höhe des eingebetteten Inhalts an.');
