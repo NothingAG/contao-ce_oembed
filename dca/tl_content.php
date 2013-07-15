@@ -34,4 +34,3 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['oembed_url'] = array
     'eval'                    => array('mandatory'=>true, 'decodeEntities' => true),
     'sql'                     => "varchar(255) NOT NULL default ''"
 );
-?>

@@ -18,4 +18,4 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-$GLOBALS['TL_LANG']['tl_content']['oembed_url']	        = array('Content URL', 'Geben Sie hier eine oEmbed API oder Vimeo Video URL ein');
+$GLOBALS['TL_LANG']['tl_content']['oembed_url']	        = array('Content URL', 'Geben Sie hier eine gültige Youtube oder Vimeo Video URL ein (Oder eine oEmbed API URL)');

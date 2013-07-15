@@ -22,6 +22,3 @@
  * Content elements
  */
 $GLOBALS['TL_LANG']['CTE']['oembed']     = array('oEmbed Element', 'Displays oEmbed content');
-
-
-?>

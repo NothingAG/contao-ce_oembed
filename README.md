@@ -20,6 +20,9 @@ A content element allowing to embed content of third-party websites (YouTube, Vi
 
 ## VERSION HISTORY
 
+### 3.1.0 (2013-07-15)
+ * Fixed a problem where a language fallback page could not be loaded after cache generation
+
 ### 3.0.0 (2013-06-20)
  * Added FItVid jQuery package
  * Videos are now responsive to the page

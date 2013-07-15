@@ -21,6 +21,4 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_LANG']['CTE']['oembed']     = array('oEmbed Element', 'Erzeugt eine oEmbed Element.')
-
-?>
+$GLOBALS['TL_LANG']['CTE']['oembed']     = array('oEmbed Element', 'Erzeugt ein oEmbed Element.');
