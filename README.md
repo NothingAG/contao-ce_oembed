@@ -1,3 +1,6 @@
+# [UNMAINTAINED]
+This project is not maintained anymore.
+
 # CONTAO CONTENT ELEMENT: OEMBED
 A content element allowing to embed content of third-party websites (YouTube, Vimdeo, Flickr, Hulu etc.) by using the oEmbed format.
 
